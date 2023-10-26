@@ -1,0 +1,104 @@
+        #include<iostream>
+        #include<bits/stdc++.h>
+        using namespace std;
+
+        void reverse(string dummy){
+            int i=0;
+            int j = dummy.length() - 1;
+
+            while(i<j){
+                swap(dummy[i] , dummy[j]);
+                i++;
+                j--;
+            }
+
+            cout<<dummy;
+        }
+
+        int main(){
+
+            /* decimal to binary conversion*/
+            cout<<"enter the decimal number"<<endl;
+            int decimalNo;
+            cin>>decimalNo;
+
+        cout<<"Method 1"<<endl;
+
+            int n = decimalNo;
+            int arr[32] = {0};
+
+            for(int i = 31; n!=0 ; i--){
+                arr[i] = n%2;
+                n = n/2;
+            }
+
+            for(int i=0 ; i<32 ; i++){
+                cout<<arr[i];
+            }
+
+
+        cout<<endl<<"Method 2"<<endl;
+
+            string binaryRep = "";
+
+            for(int i = 31 ; i>=0 ; i--){
+                int k = decimalNo >> i;
+
+                if(k & 1 == 1) binaryRep += '1';
+                else binaryRep+= '0';
+            }
+
+            cout<<binaryRep<<endl;;
+
+            cout<<"Method 3"<<endl;
+
+            string binaryRep2 = "";
+
+            while(decimalNo){
+                if(decimalNo & 1 == 1) binaryRep2 += '1';
+                else binaryRep2 += '0';
+
+                decimalNo = decimalNo>>1;
+            }
+
+            reverse(binaryRep2);
+
+
+
+            /* binary to decimal conversion*/
+
+    int array[32] = {0};
+    cout<<endl<<"enter binary (4 digits)"<<endl;
+
+    for(int i = 28 ; i<32 ; i++){
+        cin>>array[i];
+    }
+
+    cout<<"Method 1"<<endl;
+
+    int decimalAns = 0;
+
+    int cnt = 0;
+    for(int i = 31 ; i>=0 ; i--){
+        if(array[i] == 1) {
+            decimalAns = decimalAns + pow(2,cnt);
+        }
+        cnt++;
+    }
+
+    cout<<endl<<decimalAns<<endl;
+
+    cout<<"Method 2"<<endl;
+
+    decimalAns = 0;
+
+    cnt = 0;
+    for(int i = 31 ; i>=0 ; i--){
+        if(array[i] == 1) {
+            decimalAns = decimalAns + (1<<cnt);
+        }
+        cnt++;
+    }
+
+    cout<<endl<<decimalAns<<endl;
+        }
